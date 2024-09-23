@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "blog-posts")
@@ -19,5 +20,8 @@ public class BlogPost extends BaseEntity {
 
     @OneToMany(mappedBy = "blogPost")
     private List<Comment> comments;
+
+    @Column
+    private UUID uuid;
 }
 

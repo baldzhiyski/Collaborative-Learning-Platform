@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import java.util.List;
 import java.util.Set;
-
+import java.util.UUID;
 
 
 @Entity
@@ -20,6 +20,9 @@ public class StudyGroup extends BaseEntity {
     private String name; // Name of the study group
     @Column
     private String description; // Brief description of the group
+
+    @Column
+    private UUID uuid;
 
     @ManyToOne
     @JoinColumn(name = "tutor_id")

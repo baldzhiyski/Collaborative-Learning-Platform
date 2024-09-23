@@ -1,13 +1,12 @@
 package com.softuni.client.domain.entity;
 
 import com.softuni.client.domain.entity.enums.ResourceType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "resources")
@@ -16,6 +15,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Resource  extends BaseEntity{
 
+    @Column
+    private UUID uuid;
+
+    @Column
+    @Enumerated(EnumType.STRING)
     private ResourceType resourceType; // Type of resource (e.g., document, video)
 
     @ManyToOne
