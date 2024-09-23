@@ -19,3 +19,7 @@ The Collaborative Learning Platform is a web application designed to facilitate 
 - **Frontend**: JavaScript 
 - **Database**: MySQL
 - **Styling**: Bootstrap 
+
+
+## Main focus - java , spring  and  js
+- **Use of html and css templates**
