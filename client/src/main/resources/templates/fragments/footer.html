@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Footer Example</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Ensure the footer stays at the bottom */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 80vh;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        footer {
+            width: 100%;
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #ccc;
+        }
+
+        .btn-floating i {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content">
+    <!-- Main page content goes here -->
+</div>
+
+<footer>
+    <div class="footer-container">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!--Grid row-->
+            <div class="row mt-4">
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4">Learn Together, Grow Together</h5>
+
+                    <p>Join our collaborative educational platform and unlock limitless learning potential with
+                        peers.</p>
+
+                    <p>Where knowledge meets innovation and creativity.</p>
+
+                    <div class="mt-4">
+                        <!-- LinkedIn -->
+                        <a type="button" class="btn btn-floating btn-outline-light btn-lg" style="color: white;"><i
+                                class="fab fa-linkedin"></i></a>
+
+                        <!-- Twitter -->
+                        <a type="button" class="btn btn-floating btn-outline-light btn-lg" style="color: white;"><i
+                                class="fab fa-twitter"></i></a>
+
+                        <!-- GitHub -->
+                        <a type="button" class="btn btn-floating btn-outline-light btn-lg" style="color: white;"><i
+                                class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4">Contact Us</h5>
+
+                    <ul class="fa-ul" style="margin-left: 1.65em;">
+                        <li class="mb-3">
+                            <span class="fa-li"><i class="fas fa-home"></i></span><span
+                                class="ms-2">Berlin, Germany</span>
+                        </li>
+                        <li class="mb-3">
+                            <span class="fa-li"><i class="fas fa-envelope"></i></span><span class="ms-2">info@edu-platform.com</span>
+                        </li>
+                        <li class="mb-3">
+                            <span class="fa-li"><i class="fas fa-phone"></i></span><span
+                                class="ms-2">+49 123 456 789</span>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase mb-4">Join Our Newsletter</h5>
+
+                    <p>Stay updated with the latest courses, tutorials, and events from our platform. Subscribe to our
+                        monthly newsletter.</p>
+                    <form action="/submit-feedback" method="POST">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="feedback" placeholder="Give us feedback" aria-label="Recipient's feedback">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-light" type="submit">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2024 Copyright: Edu Platform
+        </div>
+        <!-- Copyright -->
+    </div>
+</footer>
+
+<!-- FontAwesome and Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
