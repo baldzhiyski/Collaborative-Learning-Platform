@@ -26,6 +26,9 @@ public class User extends BaseEntity {
     @Column
     private String password;
 
+    @Column
+    private Boolean subscribed;
+
     @ManyToOne
     private Role role;
 }

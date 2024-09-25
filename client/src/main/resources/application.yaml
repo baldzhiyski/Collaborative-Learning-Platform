@@ -29,6 +29,7 @@ spring:
     password: ${my_pass:}
     username: ${my_username:root}
     url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/collaboration-app?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+remember_me_key: ${remembermekey}
 logging:
   level:
     org:

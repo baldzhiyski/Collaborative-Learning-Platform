@@ -24,14 +24,10 @@ public class Course extends BaseEntity {
     @Column
     private UUID uuid;
 
-    @ManyToOne
-    @JoinColumn(name = "tutor_id")
-    private User tutor; // User who is the tutor of the group
-
-    @OneToMany(mappedBy = "studyGroup")
+    @OneToMany(mappedBy = "course")
     private List<Resource> resources; // Resources associated with the group
 
-    @OneToMany(mappedBy = "studyGroup")
+    @OneToMany(mappedBy = "course")
     private List<BlogPost> blogPosts; // Blog posts associated with the group
 
     @ManyToMany
