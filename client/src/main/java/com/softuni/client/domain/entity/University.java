@@ -9,19 +9,19 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "blog-posts")
+@Table(name = "study-groups")
 @Getter
 @Setter
 @NoArgsConstructor
-public class BlogPost extends BaseEntity {
-    @ManyToOne
-    @JoinColumn(name = "group_id")
-    private Course course;
+public class University extends BaseEntity {
 
-    @OneToMany(mappedBy = "blogPost")
-    private List<Comment> comments;
+    @Column(unique = true)
+    private String name;
 
     @Column
     private UUID uuid;
-}
 
+    @OneToMany(mappedBy = "university", cascade = CascadeType.ALL)
+    private List<Course> courses;
+
+}

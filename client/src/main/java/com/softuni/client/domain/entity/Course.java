@@ -15,7 +15,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-public class StudyGroup extends BaseEntity {
+public class Course extends BaseEntity {
     @Column
     private String name; // Name of the study group
     @Column
@@ -36,4 +36,8 @@ public class StudyGroup extends BaseEntity {
 
     @ManyToMany
     private Set<User> participants;
+
+    @ManyToOne
+    @JoinColumn(name = "university_id")
+    private University university;
 }

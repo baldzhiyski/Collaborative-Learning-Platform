@@ -1,0 +1,58 @@
+body {
+  background-size: cover; /* Ensure the image covers the entire background */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  position: relative; /* Position relative for the overlay */
+  height: 100vh; /* Full height */
+}
+
+.container {
+  position: relative;
+  z-index: 1; /* Ensure the content is above the background */
+}
+
+.card {
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for the card */
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+h3 {
+  color: #007bff;
+}
+
+.form-group {
+  margin-bottom: 1.5rem; /* Increased margin between fields */
+}
+
+.form-control {
+  border-radius: 10px;
+}
+
+.upload-area {
+  border: 2px dashed #007bff;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+
+.upload-area input[type="file"] {
+  margin-top: 10px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 10px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}

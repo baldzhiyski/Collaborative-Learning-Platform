@@ -5,23 +5,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "blog-posts")
+@Table(name = "feedback_comments")
 @Getter
 @Setter
 @NoArgsConstructor
-public class BlogPost extends BaseEntity {
-    @ManyToOne
-    @JoinColumn(name = "group_id")
-    private Course course;
+public class FeedBackComment extends BaseEntity {
 
-    @OneToMany(mappedBy = "blogPost")
-    private List<Comment> comments;
+    @Column
+    private String opinion;
 
     @Column
     private UUID uuid;
-}
 
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private User author;
+}

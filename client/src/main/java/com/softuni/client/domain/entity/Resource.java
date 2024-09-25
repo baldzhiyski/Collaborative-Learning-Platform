@@ -27,5 +27,5 @@ public class Resource  extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "group_id")
-    private StudyGroup studyGroup;
+    private Course course;
 }
