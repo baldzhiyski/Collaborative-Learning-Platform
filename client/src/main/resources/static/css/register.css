@@ -4,11 +4,14 @@ body {
   background-repeat: no-repeat; /* Prevent the image from repeating */
   position: relative; /* Position relative for the overlay */
   height: 100vh; /* Full height */
+  display: flex;
+  justify-content: flex-end; /* Move content to the right */
 }
 
 .container {
   position: relative;
   z-index: 1; /* Ensure the content is above the background */
+  max-width: 60%; /* Limit the width to prevent it from being too wide */
 }
 
 .card {
@@ -16,6 +19,7 @@ body {
   border: none;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for the card */
+  margin: 2rem auto;
 }
 
 .card-body {
@@ -27,11 +31,17 @@ h3 {
 }
 
 .form-group {
-  margin-bottom: 1.5rem; /* Increased margin between fields */
+  margin-bottom: 1rem; /* Adjusted margin for smaller spacing */
 }
 
 .form-control {
   border-radius: 10px;
+}
+
+.invalid-feedback {
+  font-size: 0.875rem; /* Smaller font size for the error messages */
+  color: #dc3545;
+  margin-top: 0.5rem; /* Add a small space between the input and the error */
 }
 
 .upload-area {
@@ -55,4 +65,14 @@ h3 {
 .btn-primary:hover {
   background-color: #0056b3;
   border-color: #0056b3;
+}
+
+.btn-block {
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%; /* Adjust the width on smaller screens */
+  }
 }

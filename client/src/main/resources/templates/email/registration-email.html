@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning Platform - Welcome Email</title>
+    <!-- Link to Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style type="text/css">
+        body {
+            font-family: 'Lato', Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin-top: 2rem;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background-color: #0073e6;
+            text-align: center;
+            padding: 40px 0;
+            border-radius: 4px 4px 0 0;
+        }
+        .header h1 {
+            font-size: 36px;
+            color: #ffffff;
+            margin: 0;
+            font-weight: 400;
+        }
+        .icon {
+            font-size: 100px;
+            color: #ffffff;
+            margin: 20px auto;
+        }
+        .content {
+            padding: 30px;
+            color: #666666;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 15px 25px;
+            background-color: #0073e6;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #666666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="header" style="background-color: #005bb5; text-align: center; padding: 40px 0; border-radius: 4px 4px 0 0;">
+        <h1>Welcome to the E-Learning Platform!</h1>
+        <i class="fas fa-graduation-cap icon"></i> <!-- Font Awesome icon -->
+    </div>
+    <div class="content" style="padding: 30px; color: #666666; font-size: 18px; line-height: 1.6;">
+        <p>Hello, <th:block th:text="${fullName}">Full Name</th:block>!</p>
+        <p>We are thrilled to have you join our collaborative e-learning platform. You can start learning by confirming your account with the link below:</p>
+        <a th:href="@{http://localhost:8080/users/activate/{activation_code}(activation_code=${activation_code})}" class="cta-button" style="display: inline-block; padding: 15px 25px; background-color: #005bb5; color: #ffffff; text-decoration: none; border-radius: 3px; font-size: 20px; margin-top: 20px;">Activate Account</a>
+        <p>Here are your details for confirmation:</p>
+        <p><strong>Full Name:</strong> <th:block th:text="${fullName}">John Doe</th:block></p>
+        <p><strong>Email:</strong> <th:block th:text="${email}">user@example.com</th:block></p>
+        <p>If you have any questions or need assistance, reply to this email or visit our support page. We're here to help you succeed!</p>
+        <p>Best regards,<br>The E-Learning Platform Team</p>
+    </div>
+    <div class="footer" style="text-align: center; padding: 30px 0; color: #666666; font-size: 14px;">
+        <p>Stay connected with us: <a href="https://www.facebook.com" style="text-decoration: none; color: #0073e6;">Facebook</a> | <a href="https://www.twitter.com" style="text-decoration: none; color: #0073e6;">Twitter</a></p>
+    </div>
+</div>
+</body>
+</html>

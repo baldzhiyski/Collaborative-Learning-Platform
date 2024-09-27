@@ -10,7 +10,7 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 public class GlobalExceptionHandler {
     @ExceptionHandler({ObjectNotFoundException.class, NoResourceFoundException.class})
     public ModelAndView handleNotFound(Exception exception) {
-        ModelAndView modelAndView = new ModelAndView("not-found");
+        ModelAndView modelAndView = new ModelAndView("error/404");
         return modelAndView;
     }
 

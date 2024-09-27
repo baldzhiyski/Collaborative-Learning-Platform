@@ -1,5 +1,7 @@
 package com.softuni.client.config;
 
+import com.softuni.client.repository.UserRepository;
+import com.softuni.client.service.impl.EPlatformUserDetailsService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -36,7 +38,7 @@ public class SecurityConfig {
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 
                         // Allow access to specific URLs based on roles
-                        .requestMatchers("/", "/users/login", "/users/register", "/users/login-error", "/coaches","/access-denied","/about-us","/users/activate/{activation_code}","/users/last-register-step").permitAll()
+                        .requestMatchers("/", "/users/login", "/users/register", "/users/login-error","/access-denied","/about-us","/users/activate/{activation_code}","/users/last-register-step").permitAll()
 //                        .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
                         // Catch-all for any other requests, must be authenticated
                         .anyRequest().authenticated()
@@ -49,7 +51,7 @@ public class SecurityConfig {
                         .failureForwardUrl("/users/login-error")
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/logout")
+                        .logoutUrl("/users/logout")
                         .logoutSuccessUrl("/")
                         .invalidateHttpSession(true)
                 )
@@ -67,10 +69,10 @@ public class SecurityConfig {
 
         return httpSecurity.build();
     }
-//    @Bean
-//    public UserDetailsService userDetailsService(UserRepository userRepository) {
-//        return new CrossfitUserDetailsService(userRepository);
-//    }
+    @Bean
+    public UserDetailsService userDetailsService(UserRepository userRepository) {
+        return new EPlatformUserDetailsService(userRepository);
+    }
 //    @Bean
 //    public AuthenticationSuccessHandler customAuthenticationSuccessHandler() {
 //        return new CustomAuthenticationSuccessHandler();

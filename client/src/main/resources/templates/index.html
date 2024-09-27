@@ -40,6 +40,11 @@
         <div sec:authorize="isAnonymous()">
             <a class="btn btn-primary" href="#signup">Join Now</a>
         </div>
+        <div sec:authorize="isAuthenticated()">
+            <form th:method="POST" th:action="@{/users/logout}">
+                <button class="btn-dark">Log Out</button>
+            </form>
+        </div>
     </div>
 </nav>
 <!-- Masthead-->
@@ -198,7 +203,7 @@
                         <button class="btn btn-danger btn-lg" th:onclick="'unsubscribe()'" type="button">Unsubscribe</button>
                     </div>
                     <!-- If the user is not subscribed -->
-                    <div th:if="${!subscribed}">
+                    <div th:unless="${subscribed}">
                         <h2 class="mb-4">Join the Community of Learners and Grow Together!</h2>
                         <form class="form-subscribe" id="contactFormFooter" action="#" method="post">
                             <!-- Email address input-->
