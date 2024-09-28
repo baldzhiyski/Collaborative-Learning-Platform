@@ -1,14 +1,18 @@
 package com.softuni.client.web;
 
 import com.softuni.client.domain.dto.user.RegisterDto;
+import com.softuni.client.domain.entity.User;
 import com.softuni.client.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -72,6 +76,20 @@ public class UserController {
         model.addAttribute("badRequest", "Invalid username or password !");
 
         return "auth-login";
+    }
+
+    @PostMapping("/submit-feedback")
+    public String sendFeedback(@RequestParam String feedback,@AuthenticationPrincipal UserDetails userDetails){
+        User loggedUser = this.userService.getUser(userDetails.getUsername());
+        this.userService.sendFeedBack(loggedUser,feedback);
+        return "redirect:/";
+    }
+
+    @PostMapping("/users/subscribe")
+    public String subscribe(@AuthenticationPrincipal UserDetails userDetails){
+        User logged = this.userService.getUser(userDetails.getUsername());
+        this.userService.subscribe(logged);
+        return "redirect:/";
     }
 
 }

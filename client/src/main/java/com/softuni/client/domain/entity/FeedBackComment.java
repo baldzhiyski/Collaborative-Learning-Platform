@@ -15,7 +15,7 @@ import java.util.UUID;
 public class FeedBackComment extends BaseEntity {
 
     @Column
-    private String opinion;
+    private String feedback;
 
     @Column
     private UUID uuid;

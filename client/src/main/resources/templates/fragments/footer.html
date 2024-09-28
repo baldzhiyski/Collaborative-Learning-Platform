@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,14 +71,17 @@
 
                     <p>Stay updated with the latest courses, tutorials, and events from our platform. Subscribe to our
                         monthly newsletter.</p>
-                    <form action="/submit-feedback" method="POST">
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="feedback" placeholder="Give us feedback" aria-label="Recipient's feedback">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-light" type="submit">Send Message</button>
+                    <div sec:authorize="isAuthenticated()">
+                        <form th:action="@{/submit-feedback}" th:method="POST">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="feedback" placeholder="Give us feedback"
+                                       aria-label="Recipient's feedback">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-light" type="submit">Send Message</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
                 <!--Grid column-->
             </div>

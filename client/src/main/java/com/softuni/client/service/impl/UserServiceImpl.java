@@ -1,12 +1,14 @@
 package com.softuni.client.service.impl;
 
 import com.softuni.client.domain.dto.user.RegisterDto;
+import com.softuni.client.domain.entity.FeedBackComment;
 import com.softuni.client.domain.entity.Role;
 import com.softuni.client.domain.entity.User;
 import com.softuni.client.domain.entity.UserActivationLinkEntity;
 import com.softuni.client.domain.entity.enums.RoleType;
 import com.softuni.client.domain.events.ConfirmAccountByRegisterEvent;
 import com.softuni.client.exceptions.ObjectNotFoundException;
+import com.softuni.client.repository.FeedBackRepository;
 import com.softuni.client.repository.RoleRepository;
 import com.softuni.client.repository.UserActivationLinkRepository;
 import com.softuni.client.repository.UserRepository;
@@ -31,6 +33,8 @@ public class UserServiceImpl  implements UserService {
     private ApplicationEventPublisher applicationEventPublisher;
     private UserRepository userRepository;
 
+    private FeedBackRepository feedBackRepository;
+
     private CloudinaryService cloudinaryService;
 
     private RoleRepository roleRepository;
@@ -41,9 +45,10 @@ public class UserServiceImpl  implements UserService {
     private UserActivationLinkRepository userActivationLinkRepository;
     private ModelMapper mapper;
 
-    public UserServiceImpl(ApplicationEventPublisher applicationEventPublisher, UserRepository userRepository, CloudinaryService cloudinaryService, RoleRepository roleRepository,  UserActivationLinkRepository userActivationLinkRepository, ModelMapper mapper) {
+    public UserServiceImpl(ApplicationEventPublisher applicationEventPublisher, UserRepository userRepository, FeedBackRepository feedBackRepository, CloudinaryService cloudinaryService, RoleRepository roleRepository, UserActivationLinkRepository userActivationLinkRepository, ModelMapper mapper) {
         this.applicationEventPublisher = applicationEventPublisher;
         this.userRepository = userRepository;
+        this.feedBackRepository = feedBackRepository;
         this.cloudinaryService = cloudinaryService;
         this.roleRepository = roleRepository;
         this.passwordEncoder = new BCryptPasswordEncoder();
@@ -62,6 +67,7 @@ public class UserServiceImpl  implements UserService {
 
         String imageUrl = cloudinaryService.uploadPhoto(profilePictureFile, "users-profilePics");
         User mapped = this.mapper.map(userRegisterDto, User.class);
+        mapped.setRoles(new HashSet<>());
         mapped.setPassword(passwordEncoder.encode(mapped.getPassword()));
         mapped.setProfilePictureUrl(imageUrl);
         mapped.setUuid(UUID.randomUUID());
@@ -77,6 +83,7 @@ public class UserServiceImpl  implements UserService {
     @Override
     @Transactional
     public void activateAccount(String activationCode) {
+        // TODO : Fix the setting of the roles;
 
         UserActivationLinkEntity userActivationLinkEntity = this.userActivationLinkRepository.findByActivationCode(activationCode).orElseThrow(() -> new ObjectNotFoundException("No such code in the db"));
 
@@ -85,5 +92,26 @@ public class UserServiceImpl  implements UserService {
         roles.add(roleRepository.findByRoleType(RoleType.USER).orElseThrow());
         user.setRoles(roles);
         this.userRepository.saveAndFlush(user);
+    }
+
+    @Override
+    public User getUser(String username) {
+        return this.userRepository.findByUsername(username).orElseThrow(() -> new ObjectNotFoundException(USER_NOT_FOUND));
+    }
+
+    @Override
+    public void sendFeedBack(User loggedUser, String feedback) {
+        FeedBackComment feedBackComment = new FeedBackComment();
+        feedBackComment.setUuid(UUID.randomUUID());
+        feedBackComment.setAuthor(loggedUser);
+        feedBackComment.setFeedback(feedback);
+
+        this.feedBackRepository.saveAndFlush(feedBackComment);
+    }
+
+    @Override
+    public void subscribe(User logged) {
+        logged.setSubscribed(true);
+        this.userRepository.saveAndFlush(logged);
     }
 }
