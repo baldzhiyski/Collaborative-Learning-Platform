@@ -17,7 +17,7 @@
             <div class="card shadow-lg mt-2">
                 <div class="card-body">
                     <h3 class="text-center mb-2">Register Form</h3>
-                    <form th:action="@{/users/register}" th:method="POST" enctype="multipart/form-data" id="registration-form">
+                    <form th:action="@{/users/register}" th:method="POST" enctype="multipart/form-data">
                         <!-- Profile Picture -->
                         <div class="form-group text-right">
                             <label for="profilePicture"><i class="fas fa-camera"></i> Profile Picture</label>
@@ -76,10 +76,7 @@
 
 
                         <!-- Submit button -->
-                        <button class="g-recaptcha btn btn-info btn-lg"
-                                th:attr="data-sitekey=${@reCaptchaConfig.getSite()}"
-                                data-callback='onSubmit'
-                                data-action='submit'>Sign In</button>
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
                         <a th:href="@{/users/login}" class="btn btn-dark">Already have an Account?</a>
                     </form>
                 </div>
@@ -87,12 +84,6 @@
         </div>
     </div>
 </div>
-<script src="https://www.google.com/recaptcha/api.js"></script>
-<script>
-    function onSubmit(token) {
-        document.getElementById("registration-form").submit();
-    }
 
-</script>
 </body>
 </html>
