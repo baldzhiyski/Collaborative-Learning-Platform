@@ -2,6 +2,7 @@ package com.softuni.client.config;
 
 import com.softuni.client.repository.UserRepository;
 import com.softuni.client.service.impl.EPlatformUserDetailsService;
+import com.softuni.client.service.oath.OAuthSuccessHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -31,7 +32,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity, OAuthSuccessHandler oAuthSuccessHandler) throws Exception {
         httpSecurity
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                         // Allow static resources
@@ -59,10 +60,10 @@ public class SecurityConfig {
                         .key(rememberMeKey)
                         .rememberMeParameter("rememberme")
                         .rememberMeCookieName("rememberme")
+                )
+                .oauth2Login(
+                        oauth -> oauth.successHandler(oAuthSuccessHandler)
                 );
-//                .oauth2Login(
-//                        oauth -> oauth.successHandler(oAuthSuccessHandler)
-//                )
 //                .exceptionHandling(exceptionHandling -> exceptionHandling
 //                        .accessDeniedHandler(customHandler())
 //                );

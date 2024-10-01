@@ -2,6 +2,7 @@ package com.softuni.client.service;
 
 import com.softuni.client.domain.dto.user.RegisterDto;
 import com.softuni.client.domain.entity.User;
+import org.springframework.security.core.Authentication;
 
 public interface UserService {
 
@@ -16,4 +17,8 @@ public interface UserService {
     void sendFeedBack(User loggedUser, String feedback);
 
     void subscribe(User logged);
+
+    void createUserIfNotExist(String username, String email, String fullName, String address);
+
+    Authentication login(String username);
 }

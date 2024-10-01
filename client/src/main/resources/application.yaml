@@ -24,6 +24,14 @@ spring:
     hiddenmethod:
       filter:
         enabled: 'true'
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: Ov23liHJcnC9pXwRxaPS
+            client-secret: ${GITHUB_SECRET:}
+            scope: user:email
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     password: ${my_pass:}
