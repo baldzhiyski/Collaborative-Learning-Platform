@@ -11,7 +11,7 @@ import java.util.UUID;
 
 
 @Entity
-@Table(name = "study-groups")
+@Table(name = "courses")
 @Getter
 @Setter
 @NoArgsConstructor
