@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Detail - Course Name</title>
+
+    <!-- Bootstrap and FontAwesome for Icons -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="/static/css/course-details.css">
+</head>
+<body>
+
+<!-- Course Header -->
+<div class="course-header">
+    <h1>Course Title Example</h1>
+    <p>Gain in-depth knowledge with this comprehensive course.</p>
+</div>
+
+<!-- Course Content -->
+<div class="container">
+    <!-- Resources Section -->
+    <div class="resource-list">
+        <h3>Available Resources</h3>
+        <ul>
+            <li>
+                <i class="fas fa-file-alt resource-icon"></i>
+                <div class="resource-title">Lecture 1: Introduction to the Course</div>
+                <a href="#">Download PDF</a>
+            </li>
+            <li>
+                <i class="fas fa-file-alt resource-icon"></i>
+                <div class="resource-title">Assignment 1: Basic Concepts</div>
+                <a href="#">Download Assignment</a>
+            </li>
+            <li>
+                <i class="fas fa-file-alt resource-icon"></i>
+                <div class="resource-title">Lecture 2: Advanced Topics</div>
+                <a href="#">Download PDF</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Upload Section -->
+    <div class="upload-section">
+        <h3>Upload New Resource</h3>
+        <form enctype="multipart/form-data" method="post" action="#">
+            <input type="file" id="fileInput" name="resource" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt">
+            <label for="fileInput" class="upload-button">
+                <i class="fas fa-upload"></i> Upload Resource
+            </label>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <!-- Blog/Comments Section -->
+    <div class="comments-section">
+        <!-- Comments will go here -->
+    </div>
+</div>
+
+</body>
+</html>

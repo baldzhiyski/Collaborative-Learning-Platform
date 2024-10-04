@@ -1,0 +1,119 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Nunito', sans-serif;
+    color: #343a40;
+}
+.course-header {
+    background-color: #563d7c;
+    color: white;
+    padding: 50px 0;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.course-header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+.course-header p {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+.resource-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+.resource-list ul li {
+    background-color: #ffffff;
+    margin: 10px 0;
+    padding: 20px;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+.resource-list ul li:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.resource-list ul li .resource-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    flex: 1;
+    margin-right: 10px;
+}
+.resource-list ul li .resource-icon {
+    color: #563d7c;
+    margin-right: 15px;
+}
+.resource-list ul li a {
+    text-decoration: none;
+    color: #007bff;
+}
+.upload-section {
+    margin-top: 40px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e1e1e1;
+}
+.upload-section input[type="file"] {
+    display: none;
+}
+.upload-button {
+    background-color: #563d7c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.upload-button:hover {
+    background-color: #452f69;
+}
+.comments-section {
+    margin-top: 40px;
+}
+.comment-box {
+    margin-bottom: 30px;
+}
+.comment-box textarea {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    resize: none;
+}
+.comment-box button {
+    background-color: #563d7c;
+    border-color: #563d7c;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 600;
+}
+.comment-box button:hover {
+    background-color: #452f69;
+}
+.comment {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e1e1e1;
+    margin-bottom: 20px;
+    position: relative;
+}
+.comment .comment-author {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+.comment .comment-body {
+    margin-top: 10px;
+}
+.comment .comment-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    color: #007bff;
+}
