@@ -40,4 +40,17 @@ public class SeedServiceImpl implements SeedService {
                     });
         }
     }
+
+    @Override
+    public void updateUniversitiesInfo() {
+        List<UniversityDto> allUniversities = this.universityService.getAllUniversities();
+
+        allUniversities.stream()
+                .map(UniversityDto::toEntity)
+                .filter(university -> this.universityRepository.findByName(university.getName()).isEmpty())
+                .forEach(university -> {
+                    this.universityRepository.saveAndFlush(university);
+                    this.courseRepository.saveAllAndFlush(university.getCourses());
+                });
+    }
 }
