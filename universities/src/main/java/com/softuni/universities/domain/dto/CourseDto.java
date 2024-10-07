@@ -1,5 +1,6 @@
 package com.softuni.universities.domain.dto;
 
+import com.softuni.universities.domain.entity.Course;
 import lombok.Getter;
 import lombok.Setter;
 

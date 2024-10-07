@@ -1,3 +1,21 @@
+INSERT INTO universities (id, name, description) VALUES
+                                                     (1, 'Harvard University', 'A prestigious Ivy League university known for its law, business, and medical programs.'),
+                                                     (2, 'Stanford University', 'A leading research university, known for innovation in technology and entrepreneurship.'),
+                                                     (3, 'Massachusetts Institute of Technology', 'A world-renowned institute with a focus on science, technology, and engineering.'),
+                                                     (4, 'University of Oxford', 'One of the world’s oldest universities, famous for its rich history and academic excellence.'),
+                                                     (5, 'University of Cambridge', 'A historic university known for its rigorous academic programs, especially in science and mathematics.'),
+                                                     (6, 'California Institute of Technology', 'A small but highly influential institute focused on science and engineering research.'),
+                                                     (7, 'ETH Zurich', 'A top European university specializing in science, technology, engineering, and mathematics.'),
+                                                     (8, 'University of Chicago', 'An intellectual hub for rigorous academic inquiry and research, particularly in economics and law.'),
+                                                     (9, 'Columbia University', 'A prominent Ivy League university in New York City known for its diverse academic programs.'),
+                                                     (10, 'Imperial College London', 'A leading university focused on science, engineering, medicine, and business.'),
+                                                     (11, 'Yale University', 'A prestigious Ivy League institution known for its arts, humanities, and law programs.'),
+                                                     (12, 'University of Tokyo', 'Japan’s top university known for its research in science, technology, and innovation.'),
+                                                     (13, 'National University of Singapore', 'The leading university in Asia, known for its multidisciplinary research and innovation.'),
+                                                     (14, 'University of Toronto', 'Canada’s top university, known for its research in science, technology, and humanities.');
+
+
+
 -- Insert courses associated with universities
 INSERT INTO courses (university_id, name, description, degree, language) VALUES
                                                                              -- Harvard University Courses

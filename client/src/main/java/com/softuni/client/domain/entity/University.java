@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "study-groups")
+@Table(name = "universities")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,6 +18,8 @@ public class University extends BaseEntity {
     @Column(unique = true)
     private String name;
 
+    @Column
+    private String description;
     @Column
     private UUID uuid;
 

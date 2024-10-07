@@ -11,7 +11,7 @@ import java.util.UUID;
 
 
 @Entity
-@Table(name = "study-groups")
+@Table(name = "courses")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,6 +23,11 @@ public class Course extends BaseEntity {
 
     @Column
     private UUID uuid;
+
+    @Column
+    private String degree;
+    @Column
+    private String language;
 
     @OneToMany(mappedBy = "course")
     private List<Resource> resources; // Resources associated with the group

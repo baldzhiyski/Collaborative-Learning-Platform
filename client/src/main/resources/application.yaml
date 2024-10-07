@@ -65,3 +65,11 @@ cloudinary :
 google.recaptcha:
   site: ${RECAPTCHA_SITE_KEY:test}
   secret: ${RECAPTCHA_SITE_SECRET:test}
+
+universities :
+  api :
+    allUniversities : http://${UNI-HOST:localhost}:8081/universities/all
+    publishUrl : http://${UNI-HOST:localhost}:8081/universities/publish
+    byNameUrl : http://${UNI-HOST:localhost}:8081/universities/find/{name}
+rest:
+  configuration: prod
