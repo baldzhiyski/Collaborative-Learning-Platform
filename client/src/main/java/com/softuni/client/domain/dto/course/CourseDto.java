@@ -11,6 +11,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class CourseDto {
+    private UUID uuid;
     private String name;
 
     private String description;

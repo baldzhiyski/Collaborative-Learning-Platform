@@ -123,24 +123,26 @@ public class UserServiceImpl  implements UserService {
     @Override
     @Transactional
     public void createUserIfNotExist(String username, String email, String fullName, String address) {
-        User user = new User();
-        user.setUuid(UUID.randomUUID());
+        if(this.userRepository.findByUsername(username).isEmpty()) {
+            User user = new User();
+            user.setUuid(UUID.randomUUID());
 
-        String firstName = fullName.split("\\s+")[0];
-        String lastName = fullName.split("\\s+")[1];
+            String firstName = fullName.split("\\s+")[0];
+            String lastName = fullName.split("\\s+")[1];
 
-        // Set Random strong pass and the user will receive email that he/she needs to change it
-        user.setPassword(String.valueOf(UUID.randomUUID()));
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleRepository.findByRoleType(RoleType.USER).orElseThrow(() -> new ObjectNotFoundException(INVALID_ROLE_TYPE)));
-        user.setRoles(roles);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setUsername(username);
-        user.setEmail(email);
-        user.setProfilePictureUrl("images/e-learn.jpeg");
+            // Set Random strong pass and the user will receive email that he/she needs to change it
+            user.setPassword(String.valueOf(UUID.randomUUID()));
+            Set<Role> roles = new HashSet<>();
+            roles.add(roleRepository.findByRoleType(RoleType.USER).orElseThrow(() -> new ObjectNotFoundException(INVALID_ROLE_TYPE)));
+            user.setRoles(roles);
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setUsername(username);
+            user.setEmail(email);
+            user.setProfilePictureUrl("images/e-learn.jpeg");
 
-        this.userRepository.saveAndFlush(user);
+            this.userRepository.saveAndFlush(user);
+        }
     }
 
     @Override

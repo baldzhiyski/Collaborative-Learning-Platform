@@ -1,0 +1,92 @@
+.topnav a {
+    color: white;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    position: relative; /* Position relative for child absolute positioning */
+    margin: 0; /* Remove default margin */
+    background-image: url('/images/background.jpg'); /* Replace with your image path */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background */
+    min-height: 100vh; /* Minimum height of the body */
+    overflow: auto; /* Allow scrolling */
+}
+
+body::before {
+    content: ""; /* Empty content for the pseudo-element */
+    position: fixed; /* Fix position to cover the entire viewport */
+    top: 0; /* Align to top */
+    left: 0; /* Align to left */
+    right: 0; /* Align to right */
+    bottom: 0; /* Align to bottom */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    backdrop-filter: blur(8px); /* Apply blur effect */
+    z-index: 1; /* Layer it above the background but below content */
+}
+
+.container {
+    position: relative; /* Ensure that the content is positioned above the overlay */
+    z-index: 2; /* Ensure content is on top of the overlay */
+    padding: 20px; /* Add some padding for better spacing */
+}
+.course-card {
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover transition */
+}
+
+.course-card:hover {
+    transform: scale(1.05); /* Slightly increase size on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+.card-title {
+    font-size: 1.5rem; /* Larger font for course name */
+}
+
+.card-text {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Ribbon for highlighting a top course */
+.ribbon {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    position: absolute;
+    top: -10px;
+    left: -10px;
+}
+
+.ribbon span {
+    position: absolute;
+    display: block;
+    width: 160px;
+    padding: 5px 0;
+    background-color: #f39c12;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    transform: rotate(-45deg);
+    transform-origin: 0 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-footer {
+    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Gradient background */
+}
+
+.btn-outline-light {
+    border: 2px solid #fff; /* Thick border */
+    font-weight: bold;
+}
+
+.btn-outline-light:hover {
+    background-color: #fff; /* Invert colors on hover */
+    color: #2575fc;
+    border-color: #2575fc;
+}

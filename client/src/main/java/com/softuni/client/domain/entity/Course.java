@@ -1,5 +1,6 @@
 package com.softuni.client.domain.entity;
 
+import com.softuni.client.domain.dto.course.CourseDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,4 +42,15 @@ public class Course extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "university_id")
     private University university;
+
+    public static CourseDto toDto(Course course){
+        CourseDto courseDto = new CourseDto();
+        courseDto.setUuid(course.getUuid());
+        courseDto.setDegree(course.getDegree());
+        courseDto.setName(course.getName());
+        courseDto.setDescription(course.getDescription());
+        courseDto.setLanguage(course.getLanguage());
+
+        return courseDto;
+    }
 }

@@ -1,9 +1,8 @@
 package com.softuni.client.service.impl;
 
 import com.softuni.client.config.UniversityConfig;
-import com.softuni.client.domain.dto.course.CourseDto;
 import com.softuni.client.domain.dto.university.UniversityDto;
-import com.softuni.client.service.UniversityService;
+import com.softuni.client.service.UniversityRestService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.MediaType;
@@ -13,13 +12,13 @@ import org.springframework.web.client.RestClient;
 import java.util.List;
 
 @Service
-public class UniversityServiceImpl implements UniversityService {
+public class UniversityRestServiceImpl implements UniversityRestService {
 
     private RestClient restClient;
 
     private UniversityConfig universityConfig;
 
-    public UniversityServiceImpl(@Qualifier("universitiesRestClient") RestClient restClient, UniversityConfig universityConfig) {
+    public UniversityRestServiceImpl(@Qualifier("universitiesRestClient") RestClient restClient, UniversityConfig universityConfig) {
         this.restClient = restClient;
         this.universityConfig = universityConfig;
     }

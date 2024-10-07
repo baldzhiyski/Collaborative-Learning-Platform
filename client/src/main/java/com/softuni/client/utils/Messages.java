@@ -9,6 +9,8 @@ public enum Messages {
     public static final String DOT = ".";
     public static final String USER_NOT_FOUND = "No such user found in the database ! !";
 
+    public static final String INVALID_UNI_NAME = "No such university in the db !";
+
     public static final String INVALID_ACTIVATION_CODE = "The following activation code : %s is not valid !";
     public static final String INVALID_ROLE_TYPE = "Invalid type of role !";
     public static final long MAX_FILE_SIZE = 5 * 1024 * 1024;

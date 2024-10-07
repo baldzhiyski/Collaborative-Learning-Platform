@@ -5,7 +5,7 @@ import com.softuni.client.domain.dto.university.UniversityDto;
 import com.softuni.client.repository.CourseRepository;
 import com.softuni.client.repository.UniversityRepository;
 import com.softuni.client.service.SeedService;
-import com.softuni.client.service.UniversityService;
+import com.softuni.client.service.UniversityRestService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 @Service
 public class SeedServiceImpl implements SeedService {
     private UniversityRepository universityRepository;
-    private UniversityService universityService;
+    private UniversityRestService universityService;
 
     private CourseRepository courseRepository;
 
-    public SeedServiceImpl(UniversityRepository universityRepository, UniversityService universityService, CourseRepository courseRepository) {
+    public SeedServiceImpl(UniversityRepository universityRepository, UniversityRestService universityService, CourseRepository courseRepository) {
         this.universityRepository = universityRepository;
         this.universityService = universityService;
         this.courseRepository = courseRepository;

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="University Courses and Information" />
+    <meta name="author" content="University Admin" />
+    <title>University - Course Listings</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/footer.css}" rel="stylesheet"/>
+    <link th:href="@{/css/navbar.css}" rel="stylesheet"/>
+    <link th:href="@{/css/universities.css}" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar.html::div}"></div>
+
+<!-- Page Content-->
+<div class="container px-4 px-lg-5" th:object = "${searchedUniversity}">
+    <!-- Heading Row -->
+    <div class="row gx-4 gx-lg-5 align-items-center my-5">
+        <div class="col-lg-7">
+            <img class="img-fluid rounded mb-4 mb-lg-0" th:src="@{/images/uni.jpg}" alt="University Campus Image" />
+        </div>
+        <div class="col-lg-5">
+            <h1 class="font-weight-light text-white" th:text = "${'Welcome to ' + searchedUniversity.name}" ></h1>
+            <p class="text-white" th:text="${searchedUniversity.description}"></p>
+        </div>
+    </div>
+
+    <!-- Call to Action-->
+    <div class="card text-white bg-secondary my-5 py-4 text-center">
+        <div class="card-body">
+            <p class="text-white m-0">Empower your future with our top-rated programs and innovative research opportunities. Explore our top courses, dedicated faculty, and exceptional learning environment. Join our vibrant community of learners!!</p>
+        </div>
+    </div>
+
+    <!-- Courses Display -->
+    <div class="row gx-4 gx-lg-5">
+        <!-- Column for each course -->
+        <div class="col-12 col-sm-6 col-lg-4 mb-5" th:each="course : ${coursesDtos}">
+            <!-- Responsive column sizes -->
+            <div class="card h-100 shadow-lg course-card"> <!-- Added shadow and custom class -->
+                <div class="card-body position-relative p-4">
+                    <!-- Ribbon for Course Highlight -->
+                    <div class="ribbon ribbon-top-left"><span>Top Course</span></div>
+
+                    <h2 class="card-title text-primary font-weight-bold" th:text="${course.name}">Data Science Fundamentals</h2>
+                    <p class="card-text text-muted" th:text="${course.description}">An introduction to data analytics, statistics, and machine learning tools. Join the growing field of data science!</p>
+
+                    <p class="card-text"><strong>Degree:</strong> <span th:text="${course.degree}">Bachelor's</span></p>
+                    <p class="card-text"><strong>Language:</strong> <span th:text="${course.language}">English</span></p>
+                </div>
+
+                <div class="card-footer bg-gradient-primary text-center py-3">
+                    <!-- Form with More Info Button -->
+                    <form th:action="@{/universities/explore-course/{courseUuid}(courseUuid = ${course.uuid})}" method="post">
+                        <button type="submit" class="btn btn-outline-light btn-sm">More Info</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Footer-->
+<footer id="footer" th:replace="~{fragments/footer::footer}"></footer>
+
+</body>
+</html>

@@ -1,11 +1,10 @@
 package com.softuni.client.service;
 
-import com.softuni.client.domain.dto.course.CourseDto;
 import com.softuni.client.domain.dto.university.UniversityDto;
 
 import java.util.List;
 
-public interface UniversityService {
+public interface UniversityRestService {
     List<UniversityDto> getAllUniversities();
 
     void publishUniversity(UniversityDto addUniDto);
