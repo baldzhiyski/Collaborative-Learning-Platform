@@ -1,7 +1,6 @@
-package com.softuni.client.schedulers;
+package com.softuni.client.service.schedulers;
 
 
-import com.softuni.client.service.UniversityService;
 import com.softuni.client.service.impl.SeedServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
