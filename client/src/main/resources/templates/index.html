@@ -32,10 +32,10 @@
         <a class="navbar-brand" href="#!">
             Learn Together
         </a>
-        <a th:href="@{/about-us}">About us</a>
-        <a th:href="@{/}">Home</a>
+        <a  class="navbar-brand" th:href="@{/about-us}">About us</a>
+
         <div sec:authorize="isAuthenticated()">
-            <a th:href="@{/personal-account/{uuid}(uuid=${#authentication.principal.uuid})}">Personal Account</a>
+            <a class="navbar-brand"  th:href="@{/personal-account/{uuid}(uuid=${#authentication.principal.uuid})}">Personal Account</a>
         </div>
         <div sec:authorize="isAnonymous()">
             <a class="btn btn-primary" href="#signup">Join Now</a>
@@ -43,6 +43,11 @@
         <div sec:authorize="isAuthenticated()">
             <form th:method="POST" th:action="@{/users/logout}">
                 <button class="btn-dark">Log Out</button>
+            </form>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <form th:method="GET" th:action="@{/universities/add-uni}">
+                <button class="btn-success">Add University</button>
             </form>
         </div>
     </div>

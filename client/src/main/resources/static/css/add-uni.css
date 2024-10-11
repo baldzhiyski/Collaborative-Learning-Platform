@@ -1,0 +1,31 @@
+body {
+    background: url('/static/images/uni-bc.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+
+}
+
+/* Overlay to blur the background */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 0;
+}
+
+/* Content wrapper */
+.form-container {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    color: #333;
+}

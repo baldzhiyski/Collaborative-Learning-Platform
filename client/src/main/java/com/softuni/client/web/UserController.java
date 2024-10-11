@@ -4,6 +4,7 @@ import com.softuni.client.domain.dto.user.RegisterDto;
 import com.softuni.client.domain.entity.User;
 import com.softuni.client.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,7 @@ public class UserController {
     }
 
     @GetMapping("/users/register")
-    public String register(org.springframework.ui.Model model) {
+    public String register(Model model) {
         if (!model.containsAttribute("registerDto")) {
             model.addAttribute("registerDto", new RegisterDto());
         }
@@ -90,6 +91,13 @@ public class UserController {
         User logged = this.userService.getUser(userDetails.getUsername());
         this.userService.subscribe(logged);
         return "redirect:/";
+    }
+
+
+    @GetMapping("/universities/add-uni")
+    public String addUniPage(){
+
+        return "add-uni";
     }
 
 }
