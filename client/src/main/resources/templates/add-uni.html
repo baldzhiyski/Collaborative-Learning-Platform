@@ -8,6 +8,7 @@
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/add-uni.css}" rel="stylesheet"/>
     <link th:href="@{/css/navbar.css}" rel="stylesheet"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
           rel="stylesheet">
@@ -18,16 +19,18 @@
 <div class="container mt-5 form-container">
     <h2 class="mb-4 text-center">Add a New University</h2>
 
+    <!-- Error Message Container -->
+    <div id="universityErrorMessageContainer" class="alert alert-danger" style="display: none;"></div>
     <!-- Form to Add a New University -->
     <div class="card">
         <div class="card-body">
             <div class="mb-3">
-                <label for="universityName" class="form-label">University Name</label>
+                <label for="universityName" class="form-label">* University Name</label>
                 <input type="text" class="form-control" id="universityName" placeholder="Enter university name" required>
             </div>
 
             <div class="mb-3">
-                <label for="universityDescription" class="form-label">Description</label>
+                <label for="universityDescription" class="form-label">* Description</label>
                 <textarea class="form-control" id="universityDescription" rows="3" placeholder="Enter university description" required></textarea>
             </div>
         </div>
@@ -49,10 +52,13 @@
     </div>
 </div>
 
+<div id="coursesErrorMessageContainer" class="alert alert-danger" style="display: none;"></div>
 <!-- Course Template (Hidden initially) -->
 <template id="courseTemplate">
     <div class="course-card card mb-3">
         <div class="card-body">
+            <!-- Error Message Container -->
+
             <div class="mb-3">
                 <label for="courseName" class="form-label">Course Name</label>
                 <input type="text"  id="courseName" class="form-control course-name" placeholder="Enter course name" required>

@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
 @Tag(name = "Universities API", description = "API for managing universities.")
 public class UniversitiesController {
 
@@ -117,7 +116,7 @@ public class UniversitiesController {
             }
     )
     @PostMapping("/universities/publish")
-    public ResponseEntity<UniversityDto> createUniversity(@RequestBody UniversityDto universityDto) {
+    public ResponseEntity<UniversityDto> createUniversity(@org.springframework.web.bind.annotation.RequestBody UniversityDto universityDto) {
         LOGGER.info("Creating university {}", universityDto);
         universityService.createUniversity(universityDto);
         return ResponseEntity.status(201).body(universityDto);

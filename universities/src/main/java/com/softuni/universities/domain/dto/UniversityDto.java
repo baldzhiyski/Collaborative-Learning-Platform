@@ -16,4 +16,13 @@ public class UniversityDto {
     private String description;
 
     private List<CourseDto> courses;
+
+    @Override
+    public String toString() {
+        return "UniversityDto{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", courses=" + courses +
+                '}';
+    }
 }
