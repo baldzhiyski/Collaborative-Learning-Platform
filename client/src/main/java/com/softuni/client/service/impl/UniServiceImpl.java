@@ -21,6 +21,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -78,7 +83,7 @@ public class UniServiceImpl  implements UniService {
         System.out.println(resourceDto.getResourceType());
         if(resourceDto.getResourceType().equals("YOUTUBE")){
         resource.setResourceType(ResourceType.VIDEO);
-        resource.setYoutubeUrl(resourceDto.getYoutubeUrl());
+        resource.setYoutubeUrlPath(resourceDto.getYoutubeUrlPath());
         }else {
             resource.setResourceType(ResourceType.DOCUMENT);
         }
@@ -87,17 +92,40 @@ public class UniServiceImpl  implements UniService {
         resource.setUploadedBy(user);
         resource.setCourse(course);
 
-        // If it's a file resource, upload the file to Cloudinary and save the URL
+        // If it's a file resource, save the file locally
         if (resourceDto.getResourceType().equals("DOCUMENT") && !resourceDto.getMultipartFile().isEmpty()) {
-            String fileUrl = cloudinaryService.uploadFile(resourceDto.getMultipartFile(), "course-resources");
-            resource.setPathToFile(fileUrl);  // Save the URL in the database
-        }
+            // Define the base directory for resources
+            String baseDirectory = "client/src/main/resources/materials";  // Adjust the path as necessary
+            // Create course directory
+            String uniName = course.getUniversity().getName();
+            String courseDirectoryName = course.getName().replaceAll("\\s+", "_"); // Replace spaces with underscores
+            String courseDirectoryPath = baseDirectory + "/"+ uniName + "/" + courseDirectoryName;
 
+            // Create directories if they do not exist
+            File courseDirectory = new File(courseDirectoryPath);
+            if (!courseDirectory.exists()) {
+                courseDirectory.mkdirs();  // Create directories
+            }
+
+            // Set the file name and path
+            String fileName = resourceDto.getMultipartFile().getOriginalFilename();
+            Path filePath = Paths.get(courseDirectoryPath, fileName);
+
+            try {
+                // Save the file locally
+                Files.copy(resourceDto.getMultipartFile().getInputStream(), filePath);
+                // Save the local path in the database
+                resource.setPathToFile(filePath.toString());
+            } catch (IOException e) {
+                e.printStackTrace(); // Handle exceptions as appropriate
+                throw new RuntimeException("Failed to save the file: " + e.getMessage());
+            }
+        }
         // Save resource to database
         resourceRepository.saveAndFlush(resource);
 
         // Return the DTO of the saved resource
-        return new DisplayResourceDto(resource.getDescription(), resource.getResourceType(), resource.getPathToFile(),resource.getYoutubeUrl());
+        return new DisplayResourceDto(resource.getId(),resource.getDescription(), resource.getResourceType(), resource.getPathToFile(),resource.getYoutubeUrlPath());
     }
 
     private Course getCourseViaUUID(UUID courseUuid) {

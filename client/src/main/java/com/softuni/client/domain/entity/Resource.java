@@ -29,7 +29,7 @@ public class Resource  extends BaseEntity{
     private User uploadedBy;
 
     @Column(columnDefinition = "TEXT")
-    private String youtubeUrl;
+    private String youtubeUrlPath;
 
     @Column
     private String pathToFile;

@@ -17,5 +17,5 @@ public class AddResourceDto  implements Serializable {
 
     private MultipartFile multipartFile;
 
-    private String youtubeUrl;
+    private String youtubeUrlPath;
 }

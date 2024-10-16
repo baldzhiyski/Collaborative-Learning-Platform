@@ -7,11 +7,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class DisplayResourceDto {
+    private Long id;
 
     private String description;
 
@@ -19,5 +22,5 @@ public class DisplayResourceDto {
 
     private String pathToFile;
 
-    private String youtubeUrl;
+    private String youtubeUrlPath;
 }

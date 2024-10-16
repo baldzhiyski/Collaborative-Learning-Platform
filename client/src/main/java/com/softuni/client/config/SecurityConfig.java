@@ -39,7 +39,7 @@ public class SecurityConfig {
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
 
                         // Allow access to specific URLs based on roles
-                        .requestMatchers("/", "/users/login","/universities/add-uni","/universities/explore-course/{courseUuid}", "/users/register", "/users/login-error","/access-denied","/about-us","/users/activate/{activation_code}","/users/last-register-step").permitAll()
+                        .requestMatchers("/", "/users/login","/universities/add-uni","/download/**","/universities/explore-course/{courseUuid}", "/users/register", "/users/login-error","/access-denied","/about-us","/users/activate/{activation_code}","/users/last-register-step").permitAll()
 //                                .requestMatchers("/universities/add-uni").hasRole("USER")
 //                        .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
                         // Catch-all for any other requests, must be authenticated

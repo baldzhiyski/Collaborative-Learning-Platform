@@ -15,22 +15,73 @@ function toggleInputFields() {
     }
 }
 
+function downloadPdf(path) {
+    // Construct the download URL
+    const pdfUrl = `http://localhost:8080/download/${encodeURIComponent(path)}`; // Ensure the path is encoded
+    console.log(pdfUrl);
+
+    fetch(pdfUrl)
+        .then(response => {
+            // Check if the response is OK (status in the range 200-299)
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.blob(); // Parse the response as a Blob
+        })
+        .then(blob => {
+            // Create a blob URL for the PDF data
+            const url = window.URL.createObjectURL(blob);
+
+            // Extract the filename from the path or provide a default name
+            // Extract the filename from the Content-Disposition header
+            let filename = 'file.pdf'; // Default filename
+
+            // Create a link element to trigger the download
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = filename; // Use the original filename for download
+            document.body.appendChild(a);
+
+            // Trigger a click event on the link element to initiate the download
+            a.click();
+
+            // Clean up by revoking the blob URL and removing the link element
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        })
+        .catch(error => {
+            console.error("Failed to download the PDF file: ", error);
+        });
+}
+
+
 function updateResourceList(materials) {
     const resourceList = document.querySelector('.resource-list ul');
     resourceList.innerHTML = ''; // Clear existing list
 
     materials.forEach(material => {
+        console.log(material.pathToFile);
+        // Create the base URL
+        // Create the base URL
+        let resourceUrl = material.pathToFile; // Base URL
+        let videoUrl = material.youtubeUrlPath; // Assuming you still need this for video links
+
+
+        console.log(resourceUrl);
+
         const listItem = document.createElement('li');
         listItem.innerHTML = `
             <i class="fas fa-file-alt resource-icon"></i>
             <div class="resource-title">${material.description}</div>
             <div class="resource-title">${'Type of file - ' + material.resourceType}</div>
             ${material.resourceType !== 'VIDEO' ?
-            `<button class="btn btn-dark" id="downloadFile">Download</button>` :
-            `<a class="btn btn-danger text-white" th:href="${material.youtubeUrl}" target="_blank">Go to YouTube</a>`}
+            `<button class="btn btn-dark" id="downloadFile" onclick="downloadPdf('${material.id}')">Download</button>` :
+            `<a class="btn btn-danger text-white" href="${videoUrl}" target="_blank">Go to YouTube</a>`}
         `;
+
         resourceList.appendChild(listItem);
     });
+
 }
 
 async function fetchResources(courseUuid) {
@@ -63,7 +114,7 @@ document.getElementById('resourceForm').addEventListener('submit', async (event)
     // Gather input values
     const description = document.querySelector('input[name="description"]').value;
     const resourceType = document.querySelector('select[name="resourceType"]').value; // Assuming a select element for resource type
-    const youtubeUrl = document.querySelector('input[name="youtubeUrl"]').value;
+    const youtubeUrl = document.querySelector('input[name="youtubeUrlPath"]').value;
     const fileInput = document.querySelector('input[name="multipartFile"]');
     const file = fileInput.files[0]; // Get the selected file
 
@@ -104,7 +155,7 @@ document.getElementById('resourceForm').addEventListener('submit', async (event)
     formData.append("description", description);
     formData.append("resourceType", resourceType);
     if (youtubeUrl) {
-        formData.append("youtubeUrl", youtubeUrl);
+        formData.append("youtubeUrlPath", youtubeUrl);
     }
     if (file) {
         formData.append("multipartFile", file); // Append the file object directly
