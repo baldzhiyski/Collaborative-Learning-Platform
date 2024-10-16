@@ -14,9 +14,9 @@
 </head>
 <body>
 
-<div th:replace="~{fragments/navbar.html::nav}"></div>
 
-<!-- Page Content-->
+<!-- Page Content--><div th:replace="~{fragments/navbar.html::nav}"></div>
+
 <div class="container px-4 px-lg-5" th:object = "${searchedUniversity}">
     <!-- Heading Row -->
     <div class="row gx-4 gx-lg-5 align-items-center my-5">
@@ -55,7 +55,7 @@
 
                 <div class="card-footer bg-gradient-primary text-center py-3">
                     <!-- Form with More Info Button -->
-                    <form th:action="@{/universities/explore-course/{courseUuid}(courseUuid = ${course.uuid})}" method="post">
+                    <form th:action="@{/universities/explore-course/{courseUuid}(courseUuid = ${course.uuid})}" th:method="GET">
                         <button type="submit" class="btn btn-outline-light btn-sm">More Info</button>
                     </form>
                 </div>

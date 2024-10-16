@@ -1,16 +1,21 @@
 package com.softuni.client.web;
 
+import com.softuni.client.domain.dto.course.CourseDto;
+import com.softuni.client.domain.dto.resource.DisplayResourceDto;
 import com.softuni.client.domain.dto.university.UniversityDto;
 
 import com.softuni.client.domain.entity.University;
 import com.softuni.client.exceptions.ObjectNotFoundException;
 import com.softuni.client.service.UniService;
-import com.softuni.client.utils.Messages;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+import java.util.UUID;
 
 import static com.softuni.client.utils.Messages.INVALID_UNI_NAME;
 
@@ -47,10 +52,17 @@ public class UniversityController {
     }
 
     @GetMapping("/universities/explore-course/{courseUuid}")
-    public String exploreCourseDetails(){
+    public String exploreCourseDetails(Model model, @PathVariable UUID courseUuid, Authentication authenticationPrincipal){
+        List<DisplayResourceDto> materialsForCourse = this.uniService.getMaterialsForCourse(courseUuid);
+        CourseDto course = this.uniService.getCourse(courseUuid);
 
-        // TODO : Implement logic
-
+        if(!model.containsAttribute("materials")){
+            model.addAttribute("materials",materialsForCourse);
+        }
+        model.addAttribute("courseName",course.getName());
+        model.addAttribute("courseDesc",course.getDescription());
+        model.addAttribute("courseUuid", courseUuid);
+        model.addAttribute("loggedInUser", authenticationPrincipal.getName());
         return "course-details";
     }
 }

@@ -4,7 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface CloudinaryService {
 
-    String uploadPhoto(MultipartFile photo,String folderName);
+    String uploadFile(MultipartFile photo, String folderName);
 
-    void deletePhoto(String publicId);
+    void deleteFile(String publicId);
 }

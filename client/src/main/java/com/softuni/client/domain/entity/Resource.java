@@ -19,13 +19,22 @@ public class Resource  extends BaseEntity{
     private UUID uuid;
 
     @Column
+    private String description;
+
+    @Column
     @Enumerated(EnumType.STRING)
     private ResourceType resourceType; // Type of resource (e.g., document, video)
 
     @ManyToOne
     private User uploadedBy;
 
+    @Column(columnDefinition = "TEXT")
+    private String youtubeUrl;
+
+    @Column
+    private String pathToFile;
+
     @ManyToOne
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "course_id")
     private Course course;
 }

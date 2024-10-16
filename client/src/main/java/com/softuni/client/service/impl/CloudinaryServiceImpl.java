@@ -16,7 +16,7 @@ public class CloudinaryServiceImpl implements CloudinaryService {
     @Resource
     private Cloudinary cloudinary;
     @Override
-    public String uploadPhoto(MultipartFile file, String folderName) {
+    public String uploadFile(MultipartFile file, String folderName) {
         try{
             HashMap<Object, Object> options = new HashMap<>();
             options.put("folder", folderName);
@@ -31,7 +31,7 @@ public class CloudinaryServiceImpl implements CloudinaryService {
     }
 
     @Override
-    public void deletePhoto(String publicId) {
+    public void deleteFile(String publicId) {
         try {
             cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
         } catch (IOException e) {

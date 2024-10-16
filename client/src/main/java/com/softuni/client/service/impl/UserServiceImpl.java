@@ -72,7 +72,7 @@ public class UserServiceImpl  implements UserService {
     public void registerUser(RegisterDto userRegisterDto) {
         MultipartFile profilePictureFile = userRegisterDto.getProfilePicture();
 
-        String imageUrl = cloudinaryService.uploadPhoto(profilePictureFile, "users-profilePics");
+        String imageUrl = cloudinaryService.uploadFile(profilePictureFile, "users-profilePics");
         User mapped = this.mapper.map(userRegisterDto, User.class);
         mapped.setRoles(new HashSet<>());
         mapped.setPassword(passwordEncoder.encode(mapped.getPassword()));

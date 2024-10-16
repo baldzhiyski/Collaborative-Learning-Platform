@@ -29,5 +29,7 @@ public enum Messages {
     public static final String ACTIVATION_CODE_SYMBOLS = "abcdefghijklmnopqrstuvwxyzABCDEFGJKLMNPRSTUVWXYZ0123456789";
     public static final int ACTIVATION_CODE_LENGTH = 20;
 
+    public static final String INVALID_COURSE = "No such course for the current university !"
+            ;
 }
 

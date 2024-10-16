@@ -1,67 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Detail - Course Name</title>
-
-    <!-- Bootstrap and FontAwesome for Icons -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
-    <link href="/static/css/course-details.css">
+    <link th:href="@{/css/footer.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/course-details.css}" rel="stylesheet"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="loggedUser" th:content="${loggedInUser}">
+    <meta name="courseUUID" th:content="${courseUuid}">
 </head>
 <body>
+<div th:replace="~{fragments/navbar.html::nav}"></div>
 
 <!-- Course Header -->
 <div class="course-header">
-    <h1>Course Title Example</h1>
-    <p>Gain in-depth knowledge with this comprehensive course.</p>
+    <h1 th:text="${courseName}">Course Title Example</h1>
+    <p th:text="${courseDesc}">Gain in-depth knowledge with this comprehensive course.</p>
 </div>
 
 <!-- Course Content -->
 <div class="container">
     <!-- Resources Section -->
     <div class="resource-list">
-        <h3>Available Resources</h3>
-        <ul>
-            <li>
-                <i class="fas fa-file-alt resource-icon"></i>
-                <div class="resource-title">Lecture 1: Introduction to the Course</div>
-                <a href="#">Download PDF</a>
-            </li>
-            <li>
-                <i class="fas fa-file-alt resource-icon"></i>
-                <div class="resource-title">Assignment 1: Basic Concepts</div>
-                <a href="#">Download Assignment</a>
-            </li>
-            <li>
-                <i class="fas fa-file-alt resource-icon"></i>
-                <div class="resource-title">Lecture 2: Advanced Topics</div>
-                <a href="#">Download PDF</a>
-            </li>
-        </ul>
+        <h3 th:if="${!materials.isEmpty()}">Available Resources</h3>
+        <ul></ul> <!-- Make sure this <ul> is present -->
+
     </div>
 
-    <!-- Upload Section -->
-    <div class="upload-section">
+    <div class="container">
         <h3>Upload New Resource</h3>
-        <form enctype="multipart/form-data" method="post" action="#">
-            <input type="file" id="fileInput" name="resource" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt">
-            <label for="fileInput" class="upload-button">
-                <i class="fas fa-upload"></i> Upload Resource
-            </label>
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <form id="resourceForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <input type="text" id="description" name="description" class="form-control" >
+            </div>
+
+            <div class="form-group">
+                <label for="resourceType">Resource Type:</label>
+                <select id="resourceType" name="resourceType" class="form-control" required
+                        onchange="toggleInputFields()">
+                    <option value="" disabled selected>Select Resource Type</option>
+                    <option th:value="YOUTUBE">YouTube</option>
+                    <option th:value="DOCUMENT">Document</option>
+                </select>
+            </div>
+
+            <div id="youtubeUrlDiv" class="form-group" style="display: none;">
+                <label for="youtubeUrl">YouTube URL:</label>
+                <input type="url" id="youtubeUrl" name="youtubeUrl" class="form-control">
+            </div>
+
+            <div id="documentDiv" class="form-group" style="display: none;">
+                <label for="document">Upload Document:</label>
+                <input type="file" id="document" name="multipartFile" class="form-control">
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+            <div id="error-message" class="text-danger mt-2" style="display: none;"></div>
         </form>
     </div>
-
     <!-- Blog/Comments Section -->
     <div class="comments-section">
         <!-- Comments will go here -->
     </div>
 </div>
-
+<footer id="footer" th:replace="~{fragments/footer::footer}"></footer>
+<script th:src="@{/js/add-materials-to-course.js}"></script>
 </body>
 </html>
